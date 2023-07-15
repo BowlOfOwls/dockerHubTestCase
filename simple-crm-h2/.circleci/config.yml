@@ -9,20 +9,20 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: npm
+          pkg-manager: mvn
       - run: |
           echo "Installing dependencies..."
-          npm install
+          mvn clean package
   test:
     docker:
       - image: cimg/node:16.10
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: npm
+          pkg-manager: mvn
       - run: |
           echo "Running tests..."
-          npm run test
+          mvn test
   build-and-push:
     executor: docker/docker
     steps:
